@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: reddit-clone
-        image: poc-repo/reddit-clone-app:replaceImageTag
+        image: poc-repo/reddit-clone-app:8
         ports:
         - containerPort: 3000
         resources:
