@@ -60,6 +60,18 @@ pipeline {
 			}
 	
 	}
+
+        stage('Docker Image Build'){
+            steps{
+              script{
+		       // Build and push Docker image
+	         	  sh '''
+				docker build -t ${DOCKER_IMAGE} .
+				docker push ${DOCKER_IMAGE}
+			  '''
+                    }
+                } 
+        }
 		
         stage('Update Deployment File') {
 		steps {
