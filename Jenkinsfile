@@ -72,7 +72,21 @@ pipeline {
                     }
                 } 
         }
-
+        stage('Update Deployment File') {
+		steps {
+			withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+				sh '''
+					git config user.email "rishindrasingh23@gmail.com"
+					git config user.name "Rishindra Singh"
+					BUILD_NUMBER=${BUILD_NUMBER}
+					sed -i "s#poc-repo/reddit-clone-app:.*#poc-repo/reddit-clone-app:${BUILD_NUMBER}#g" reddit-clone-app-manifests/deployment.yml
+					git add reddit-clone-app-manifests/deployment.yml
+					git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+					git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:${BRANCH}
+					'''
+				}
+			}
+		}
 
   }
 }
