@@ -8,15 +8,15 @@ pipeline {
     environment {
             PROJECT_ID = 'devopslearning-463313'
             BRANCH = 'gcp'
-	          REGION = 'us-central1'
-	          REPO_NAME = 'poc-repo'
-	          IMAGE_NAME = "reddit-clone-app"
+	    REGION = 'us-central1'
+	    REPO_NAME = 'poc-repo'
+	    IMAGE_NAME = "reddit-clone-app"
            // REPO_DIR = 'java-maven-sonar-argocd-helm-k8s'
-	          DOCKER_IMAGE = "${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:${BUILD_NUMBER}"
-	          GCP_CREDENTIALS = credentials('gcp-artifact-cred')
+	    DOCKER_IMAGE = "${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:${BUILD_NUMBER}"
+            GCP_CREDENTIALS = credentials('gcp-artifact-cred')
             GIT_REPO_NAME = "reddit-clone-app"
             GIT_USER_NAME = "rishindrasingh"
-	          SONAR_URL = "http://34.131.105.151:9000"
+	    SONAR_URL = "http://34.131.105.151:9000"
         
     }  
   stages {
@@ -24,14 +24,6 @@ pipeline {
       steps {
         sh 'echo passed successfull'
         //git branch: 'rishindra', url: 'https://github.com/rishindrasingh/Jenkins-Zero-To-Hero.git'
-      }
-    }
-	
-    stage('Static Code Analysis') {
-      steps {
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
-        }
       }
     }
 	
