@@ -11,15 +11,17 @@ spec:
       labels:
         app: reddit-clone
     spec:
+      imagePullSecrets:
+        - name: artifact-registry-secret
       containers:
-      - name: reddit-clone
-        image: poc-repo/reddit-clone-app:5
-        ports:
-        - containerPort: 3000
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
+        - name: reddit-clone
+          image: us-central1-docker.pkg.dev/devopslearning-463313/poc-repo/reddit-clone-app:5
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
