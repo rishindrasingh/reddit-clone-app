@@ -16,7 +16,7 @@ pipeline {
             GCP_CREDENTIALS = credentials('gcp-artifact-cred')
             GIT_REPO_NAME = "reddit-clone-app"
             GIT_USER_NAME = "rishindrasingh"
-	    SONAR_URL = "http://34.131.105.151:9000"
+	    //SONAR_URL = "http://34.131.105.151:9000"
         
     }  
   stages {
