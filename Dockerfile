@@ -1,12 +1,12 @@
-
-FROM node:19-alpine3.15
+FROM node:18-alpine
 
 WORKDIR /reddit-clone
 
-COPY . /reddit-clone
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
 
-RUN npm install 
+COPY . .
 
 EXPOSE 3000
 
-CMD ["npm","run","dev"]
+CMD ["npm", "run", "dev"]
