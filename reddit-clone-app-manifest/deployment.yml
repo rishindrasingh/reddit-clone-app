@@ -15,13 +15,6 @@ spec:
         - name: artifact-registry-secret
       containers:
         - name: reddit-clone
-          image: poc-repo/reddit-clone-app:2
+          image: us-central1-docker.pkg.dev/devopslearning-463313/poc-repo/reddit-clone-app:2
           ports:
             - containerPort: 3000
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
